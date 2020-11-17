@@ -5,12 +5,14 @@ import {prependListener} from "cluster";
 type ItemType = {
     title: string
     value: any
+    country?:string
+    countPeople?:number
 }
 
 type SelectPropsType = {
     value?: any
     onChange: (value: any) => void
-    items: ItemType[]
+    items:Array<ItemType>
 }
 
 export function Select(props: SelectPropsType) {
@@ -42,6 +44,7 @@ export function Select(props: SelectPropsType) {
             if(!selectedItem) {
                 props.onChange(props.items[0].value);
             }
+
         }
         if (e.key ==="Enter" || e.key ==="Escape"){
             setActive(false);
