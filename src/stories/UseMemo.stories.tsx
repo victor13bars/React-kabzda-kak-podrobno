@@ -1,4 +1,5 @@
 import React, {useCallback, useMemo, useState} from "react";
+import {runInNewContext} from "vm";
 
 export default {
     title: "Usememo",
@@ -22,7 +23,6 @@ export const DifficultCountingExample = () => {
         }
         return tempResultA
     }, [a]);
-
 
     for (let i = 1; i <= b; i++) {
         resultB *= i;
@@ -52,6 +52,7 @@ const UsersSecret = (props: usersType) => {
 const Users = React.memo(UsersSecret);
 
 export const HelpsToReactMemo = () => {
+    console.log("Help")
     const [counter, setCounter] = useState(0);
     const [users, setUsers] = useState(["Vitya", "Max", "Alex"]);
 
@@ -77,19 +78,25 @@ export const LikeUseCallBack = () => {
     const [counter, setCounter] = useState(0);
     const [books, setBooks] = useState(["React", "JS", "Angular"]);
 
+    const newArray = useMemo(() => {
+        return books.filter(book => book.toLowerCase().indexOf("a") > -1)
+    }, [books])
+
+
 
     const memoAddBook =useCallback(() => {
-        const newUsers = [...books, "CSS" + new Date().getTime()]
+        const newUsers = [...books, "Angular" + new Date().getTime()]
         setBooks(newUsers);
     }, [])
     return <>
         <button onClick={() => setCounter(counter + 1)}>+</button>
         {counter}
-        <Books addBook={memoAddBook}/>
+        <Books books={newArray} addBook={memoAddBook}/>
     </>
 }
 
 type BooksType = {
+    books:Array<string>
     addBook: () => void
 }
 
@@ -97,6 +104,9 @@ const BooksSecret = (props: BooksType) => {
     console.log("BooksSecret")
     return <div>
         <button onClick={() => props.addBook()}>add book</button>
+        {
+            props.books.map((book,i)=><div key={i}>{book}</div>)
+        }
     </div>
 }
 

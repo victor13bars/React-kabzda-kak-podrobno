@@ -77,7 +77,9 @@ export const HelpsToReactMemo = () => {
         <button onClick={() => setCounter(counter + 1)}>+</button>
         {/*<button onClick={addUser}>add user</button>*/}
         {counter}
+
         <ExampleMemo1 items={newArray} onChange={setValue} value={value}/>
+
         <ExampleMemo2 items={newArray2} onChange={setValue} value={value}/>
         <ExampleMemo3 items={newArray3} onChange={setValue} value={value}/>
         {/*<Users users={newArray}/>*/}

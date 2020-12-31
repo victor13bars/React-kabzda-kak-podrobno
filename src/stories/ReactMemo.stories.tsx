@@ -5,6 +5,7 @@ export default {
 }
 
 const NewMessagesCounter = (props: { count: number }) => {
+    console.log("NewMessagesCounter")
     return <div>{props.count}</div>
 }
 
@@ -18,8 +19,10 @@ const UsersSecret = (props: usersType) => {
 }
 
 const Users = React.memo(UsersSecret);
+const Counter = React.memo(NewMessagesCounter)
 
 export const Example1 = () => {
+    console.log("Example")
     const [counter, setCounter] = useState(0);
     const [users, setUsers] = useState(["Vitya", "Max", "Alex"]);
     const addUser = () => {
@@ -30,7 +33,7 @@ export const Example1 = () => {
     return <>
         <button onClick={() => setCounter(counter + 1)}>+</button>
         <button onClick={addUser}>add user</button>
-        <NewMessagesCounter count={counter}/>
+        <Counter count={counter}/>
         <Users users={users}/>
     </>
 }
