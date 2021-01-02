@@ -19,15 +19,41 @@ export const Example1 = () => {
     useEffect(() => {
         console.log("UseEffects only first render (componentDidMount)")
         document.title = counter.toString();
-    },[])
+    }, [])
 
     useEffect(() => {
         console.log("UseEffects first render and every counter change")
         document.title = counter.toString();
-    },[counter])
+    }, [counter])
     return <>
         Hello,{counter}{fake}
         <button onClick={() => setCounter(counter + 1)}>counter +</button>
         <button onClick={() => setFake(fake + 1)}>fake +</button>
+    </>
+}
+
+export const SetTimeOutExample = () => {
+
+    const [fake, setFake] = useState(1);
+    const [counter, setCounter] = useState(1);
+
+    console.log("SetTimeOutExample")
+
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         document.title = counter.toString();
+    //     }, 1000)
+    // })
+
+    useEffect(() => {
+        setInterval(() => {
+            setCounter(state => state + 1)
+        }, 1000)
+    },[])
+
+    return <>
+        Hello, counter: {counter} - fake {fake}
+        {/*<button onClick={() => setCounter(counter + 1)}>counter +</button>*/}
+        {/*<button onClick={() => setFake(fake + 1)}>fake +</button>*/}
     </>
 }
