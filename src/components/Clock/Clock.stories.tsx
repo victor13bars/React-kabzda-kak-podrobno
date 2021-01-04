@@ -1,11 +1,14 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React from "react";
 import {Clock} from "./Clock";
 
 export default {
-    title: "Clock",
-    component: Clock
+    title: "Clock"
 }
 
-export const BaseExample1 = () => {
-    return <Clock />
+export const AnalogExample1 = () => {
+    return <Clock mode = {"analog"}/>
+}
+
+export const DigitalExample1 = () => {
+    return <Clock mode = {"digital"}/>
 }
